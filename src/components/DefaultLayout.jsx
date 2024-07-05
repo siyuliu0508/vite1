@@ -12,12 +12,12 @@ const HeaderComponent = () => {
   });
   const [langList] = useState([
     {
-      lang: 'en',
-      label: 'English'
-    },
-    {
       lang: 'zh',
       label: '中文'
+    },
+    {
+      lang: 'en',
+      label: 'English'
     }
   ])
   const toggleLang = (lang) => {
@@ -28,47 +28,42 @@ const HeaderComponent = () => {
   // debugger
   return (
     <div className="container">
-      <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="/vite1/#" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <span className="fs-4">BanffNB666</span>
-        </a>
-
-        <ul className="nav nav-pills">
-          <li className="nav-item">
-            <a href="/vite1/#" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
-              {t('首页')}
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              href="/vite1/#roomsFeatures"
-              className={location.pathname === "/roomsFeatures" ? "nav-link active" : "nav-link"}
-            >
-              {t('房间特征')}
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="/vite1/#bookNow" className={location.pathname === "/bookNow" ? "nav-link active" : "nav-link"}>
-              Book Now
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              href="/vite1/#sendUsAMessage"
-              className={location.pathname === "/sendUsAMessage" ? "nav-link active" : "nav-link"}
-            >
-              Send us a message
-            </a>
-          </li>
-        </ul>
-        {/* <DropdownButton style={{marginLeft: '16px'}} title={lang.label}>
-          {
-            langList.map((item, index) => {
-              return <Dropdown.Item key={index} onClick={ ()=>{toggleLang(item)} }>{item.label}</Dropdown.Item>
-            })
-          }
-        </DropdownButton> */}
-      </header>
+      <nav className="navbar navbar-expand-lg ">
+        <div className="container-fluid px-0">
+          <a className="navbar-brand" href=" ">BanffNB666</a >
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className={location.pathname === "/" ? "nav-link active" : "nav-link"} aria-current="page" href="/#">{t('首页')}</a >
+              </li>
+              <li className="nav-item">
+                <a className={location.pathname === "/roomsFeatures" ? "nav-link active" : "nav-link"} href="/#roomsFeatures">{t('房间特征')}</a >
+              </li>
+              <li className="nav-item">
+                <a className={location.pathname === "/bookNow" ? "nav-link active" : "nav-link"} href="/#bookNow">Book Now</a >
+              </li>
+              <li className="nav-item">
+                <a className={location.pathname === "/sendUsAMessage" ? "nav-link active" : "nav-link"} href="/#sendUsAMessage">Send us a message</a >
+              </li>
+              <li className="nav-item dropdown">
+                {/* <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  { lang.label }
+                </a > */}
+                <ul className="dropdown-menu">
+                  {
+                    langList.map((item, index) => {
+                      return <li key={index} onClick={ ()=>{toggleLang(item)} }><a className="dropdown-item" >{item.label}</a ></li>
+                    })
+                  }
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }
