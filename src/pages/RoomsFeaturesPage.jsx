@@ -195,7 +195,7 @@ const RoomsFeaturesPage = () => {
               }
               {
                 count <= 0 ?
-                  <p className="text-center py-5 mt-5">无符合条件的房间</p>: null
+                  <p className="text-center py-5 mt-5">No room available</p>: null
               }
             </div>
           </div>

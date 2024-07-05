@@ -37,16 +37,16 @@ const HeaderComponent = () => {
           <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className={location.pathname === "/" ? "nav-link active" : "nav-link"} aria-current="page" href="/#">{t('首页')}</a >
+                <a className={location.pathname === "/" ? "nav-link active" : "nav-link"} aria-current="page" href="/vite1/#">{t('首页')}</a >
               </li>
               <li className="nav-item">
-                <a className={location.pathname === "/roomsFeatures" ? "nav-link active" : "nav-link"} href="/#roomsFeatures">{t('房间特征')}</a >
+                <a className={location.pathname === "/roomsFeatures" ? "nav-link active" : "nav-link"} href="/vite1/#roomsFeatures">{t('房间特征')}</a >
               </li>
               <li className="nav-item">
-                <a className={location.pathname === "/bookNow" ? "nav-link active" : "nav-link"} href="/#bookNow">Book Now</a >
+                <a className={location.pathname === "/bookNow" ? "nav-link active" : "nav-link"} href="/vite1/#bookNow">Book Now</a >
               </li>
               <li className="nav-item">
-                <a className={location.pathname === "/sendUsAMessage" ? "nav-link active" : "nav-link"} href="/#sendUsAMessage">Send us a message</a >
+                <a className={location.pathname === "/sendUsAMessage" ? "nav-link active" : "nav-link"} href="/vite1/#sendUsAMessage">Send us a message</a >
               </li>
               <li className="nav-item dropdown">
                 {/* <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

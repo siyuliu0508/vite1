@@ -170,7 +170,6 @@ const StepFirst = ({step, toggleStep, getFormData}) => {
 const StepSecond = ({step, toggleStep}) => {
   const formRef = useRef(null)
   const book = (event) => {
-    debugger
     event.preventDefault()
     event.stopPropagation()
     if (formRef.current) {
