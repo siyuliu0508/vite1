@@ -1,102 +1,90 @@
 import { useNavigate } from "react-router-dom";
 import withLayout from "../components/DefaultLayout";
 import { useState } from 'react';
-import {Button, Modal, Image, Carousel} from 'react-bootstrap';
+import { Button, Modal, Image, Carousel } from 'react-bootstrap';
 
 const RoomsFeaturesPage = () => {
   const navigate = useNavigate();
-  const [currImgs, setCurrImgs] = useState([])
+  const [currImgs, setCurrImgs] = useState([]);
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
-    setShow(false)
+    setShow(false);
   };
   const handleShow = (imgs) => {
-    setCurrImgs(imgs)
-    setShow(true)
+    setCurrImgs(imgs);
+    setShow(true);
   };
 
-  const [minPrice, setMinPrice] = useState('')
-  const [maxPrice, setMaxPrice] = useState('')
-  const [peopleNumber, setPeopleNumber] = useState('')
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [peopleNumber, setPeopleNumber] = useState('');
   const minPriceOnChange = (event) => {
-    setMinPrice(event.target.value)
+    setMinPrice(event.target.value);
   }
   const maxPriceOnChange = (event) => {
-    setMaxPrice(event.target.value)
+    setMaxPrice(event.target.value);
   }
   const peopleNumberOnChange = (event) => {
-    setPeopleNumber(event.target.value)
+    setPeopleNumber(event.target.value);
   }
-  const [count, setCount] = useState(3)
+  const [count, setCount] = useState(3);
   const search = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
-    let count = 0
+    event.preventDefault();
+    event.stopPropagation();
+    let count = 0;
     setRoomList(roomList.map(item => {
       if (peopleNumber && minPrice && maxPrice) {
-        // 输入三个
-        if ( item.people >= peopleNumber && minPrice <= item.price && maxPrice >= item.price  ) {
-          item.isShow = true
+        if (item.people >= peopleNumber && minPrice <= item.price && maxPrice >= item.price) {
+          item.isShow = true;
         } else {
-          item.isShow = false
+          item.isShow = false;
         }
       } else if (!peopleNumber && !minPrice && !maxPrice) {
-        // 输入零个
-        item.isShow = true
+        item.isShow = true;
       } else if (peopleNumber && !minPrice && !maxPrice) {
-        // 输入一个
-        if ( item.people >= peopleNumber) {
-          item.isShow = true
+        if (item.people >= peopleNumber) {
+          item.isShow = true;
         } else {
-          item.isShow = false
+          item.isShow = false;
         }
       } else if (!peopleNumber && minPrice && !maxPrice) {
-        // 输入一个
-        if ( minPrice <= item.price ) {
-          item.isShow = true
+        if (minPrice <= item.price) {
+          item.isShow = true;
         } else {
-          item.isShow = false
+          item.isShow = false;
         }
-        
       } else if (!peopleNumber && !minPrice && maxPrice) {
-        // 输入一个
-        if ( maxPrice >= item.price ) {
-          item.isShow = true
+        if (maxPrice >= item.price) {
+          item.isShow = true;
         } else {
-          item.isShow = false
+          item.isShow = false;
         }
       } else if (peopleNumber && minPrice && !maxPrice) {
-        // 输入两个
-        if ( item.people >= peopleNumber && minPrice <= item.price ) {
-          item.isShow = true
+        if (item.people >= peopleNumber && minPrice <= item.price) {
+          item.isShow = true;
         } else {
-          item.isShow = false
+          item.isShow = false;
         }
-
       } else if (peopleNumber && !minPrice && maxPrice) {
-        // 输入两个
-        if ( item.people >= peopleNumber && maxPrice >= item.price  ) {
-          item.isShow = true
+        if (item.people >= peopleNumber && maxPrice >= item.price) {
+          item.isShow = true;
         } else {
-          item.isShow = false
+          item.isShow = false;
         }
-
       } else if (!peopleNumber && minPrice && maxPrice) {
-        // 输入两个
-        if ( minPrice <= item.price && maxPrice >= item.price  ) {
-          item.isShow = true
+        if (minPrice <= item.price && maxPrice >= item.price) {
+          item.isShow = true;
         } else {
-          item.isShow = false
+          item.isShow = false;
         }
-
       }
       if (item.isShow) {
-        count++
+        count++;
       }
-      return item
-    }))
-    setCount(count)
+      return item;
+    }));
+    setCount(count);
   }
   const [roomList, setRoomList] = useState([
     { name: 'Room type 1', people: 1, price: 200, desc: '2 queen beds, 1 sofa, 1 kitchen, 1 washroom', imgs: ['/vite1/room1.jpg', '/vite1/room2.jpg'], isShow: true },
@@ -120,39 +108,45 @@ const RoomsFeaturesPage = () => {
               </div>
               <form className="d-flex justify-content-center">
                 <div className="mx-1">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
+                  <label htmlFor="peopleNumber" className="form-label">
                     For how many people
                   </label>
                   <input
                     type="number"
                     className="form-control"
+                    id="peopleNumber"
                     value={peopleNumber}
                     onChange={peopleNumberOnChange}
                     placeholder="Number"
+                    aria-label="Number of people"
                   />
                 </div>
                 <div className="mx-1">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
+                  <label htmlFor="minPrice" className="form-label">
                     Min price
                   </label>
                   <input
                     type="number"
                     className="form-control"
+                    id="minPrice"
                     value={minPrice}
                     onChange={minPriceOnChange}
                     placeholder="Number"
+                    aria-label="Minimum price"
                   />
                 </div>
                 <div className="mx-1">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
+                  <label htmlFor="maxPrice" className="form-label">
                     Max price
                   </label>
                   <input
                     type="number"
                     className="form-control"
+                    id="maxPrice"
                     value={maxPrice}
                     onChange={maxPriceOnChange}
                     placeholder="Number"
+                    aria-label="Maximum price"
                   />
                 </div>
                 <div className="mx-1">
@@ -166,14 +160,16 @@ const RoomsFeaturesPage = () => {
               </form>
               { 
                 roomList.map((item, index) => (
-                  <div key={index} className={item.isShow?'d-flex justify-content-center mt-5':'d-none d-flex justify-content-center mt-5'}>
+                  <div key={index} className={item.isShow ? 'd-flex justify-content-center mt-5' : 'd-none d-flex justify-content-center mt-5'}>
                     <div
                       className="row g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative"
                       style={{ width: "760px" }}
+                      role="region"
+                      aria-labelledby={`room-${index}`}
                     >
                       <div className="col d-flex flex-column justify-content-center position-static">
                         <div className="p-4">
-                          <h3 className="mb-0">{ item.name }</h3>
+                          <h3 className="mb-0" id={`room-${index}`}>{ item.name }</h3>
                           <p className="card-text mb-auto">
                             { item.desc }
                             <br />
@@ -185,9 +181,12 @@ const RoomsFeaturesPage = () => {
                       </div>
                       <div
                         className="col d-none d-lg-block"
-                        onClick={()=>handleShow(item.imgs)}
+                        onClick={() => handleShow(item.imgs)}
+                        role="button"
+                        tabIndex="0"
+                        aria-label={`View images of ${item.name}`}
                       >
-                        <img src={item.imgs.length>0?item.imgs[0]:''} style={{width:'100%',height:'200px',objectFit:'cover'}}/>
+                        <img src={item.imgs.length > 0 ? item.imgs[0] : ''} style={{ width: '100%', height: '200px', objectFit: 'cover' }} alt={`Image of ${item.name}`} />
                       </div>
                     </div>
                   </div>
@@ -195,7 +194,7 @@ const RoomsFeaturesPage = () => {
               }
               {
                 count <= 0 ?
-                  <p className="text-center py-5 mt-5">No room available</p>: null
+                  <p className="text-center py-5 mt-5">No room available</p> : null
               }
             </div>
           </div>
@@ -203,28 +202,23 @@ const RoomsFeaturesPage = () => {
       </div>
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>预览</Modal.Title>
+          <Modal.Title>Preview</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Carousel>
             {
-              currImgs.map((item, index)=>{
-                return <Carousel.Item key={index}>
-                  {/* <img
-                    className="d-block w-100"
-                    src="holder.js/800x400?text=First slide&bg=f5f5f5"
-                    alt="First slide"
-                  /> */}
-                  <Image src={item} className="d-block w-100" rounded style={{width:'100%'}}/>
+              currImgs.map((item, index) => (
+                <Carousel.Item key={index}>
+                  <Image src={item} className="d-block w-100" rounded style={{ width: '100%' }} alt={`Slide ${index + 1}`} />
                 </Carousel.Item>
-              })
+              ))
             }
           </Carousel>
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-outline-primary" onClick={handleClose}>
-            关闭
-          </button>
+          <Button variant="outline-primary" onClick={handleClose}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

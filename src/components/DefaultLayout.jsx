@@ -70,7 +70,7 @@ const HeaderComponent = () => {
                   aria-current={location.pathname === "/bookNow" ? "page" : undefined} 
                   href="/vite1/#bookNow"
                 >
-                  Book Now
+                  {t('预定')}
                 </a>
               </li>
               <li className="nav-item">
@@ -79,7 +79,7 @@ const HeaderComponent = () => {
                   aria-current={location.pathname === "/sendUsAMessage" ? "page" : undefined} 
                   href="/vite1/#sendUsAMessage"
                 >
-                  Send us a message
+                  {t('信息')}
                 </a>
               </li>
               <li className="nav-item dropdown">
@@ -119,16 +119,17 @@ const HeaderComponent = () => {
 
 // 公用尾部组件
 const FooterComponent = () => {
+  const { t } = useTranslation();
   return (
     <div className="container" role="contentinfo">
       <footer className="py-5">
         <div className="row">
           <div className="col-md-5 d-flex flex-column justify-content-center">
-            <h5 className="mb-4">FrontDesk Open hours</h5>
-            <p className="mb-0">Monday - Thursday 10am-6:30pm</p>
-            <p className="mb-0">Friday - 10am-5:30pm</p>
-            <p className="mb-0">Monday - 10am-3pm (alternating)</p>
-            <p className="mb-0">Sunday - CLOSED</p>
+          <h5 className="mb-4">{t("脚标题1")}</h5>
+            <p className="mb-0">{t("脚1")}</p>
+            <p className="mb-0">{t("脚2")}</p>
+            <p className="mb-0">{t("脚3")}</p>
+            <p className="mb-0">{t("脚4")}</p>
           </div>
           <div className="col-md-5 text-end">
             <iframe
